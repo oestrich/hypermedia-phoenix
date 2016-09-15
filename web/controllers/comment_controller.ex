@@ -12,8 +12,6 @@ defmodule Todos.CommentController do
   end
 
   def create(conn, %{"template" => %{ "data" => comment_params }}) do
-    IO.inspect(comment_params)
-    IO.inspect(template_data(comment_params))
     changeset = Comment.changeset(%Comment{}, template_data(comment_params))
 
     case Repo.insert(changeset) do
