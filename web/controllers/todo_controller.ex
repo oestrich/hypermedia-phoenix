@@ -1,5 +1,6 @@
 defmodule Todos.TodoController do
   use Todos.Web, :controller
+  import Todos.ApiController
 
   alias Todos.Todo
 
@@ -51,11 +52,5 @@ defmodule Todos.TodoController do
     # send_resp(conn, :no_content, "")
     todos = Repo.all(Todo)
     render(conn, "index.json", todos: todos, url: todo_url(Todos.Endpoint, :index))
-  end
-
-  defp template_data(params) do
-    Enum.reduce(params, %{}, fn(datum, map) ->
-      Map.put(map, datum["name"], datum["value"])
-    end)
   end
 end

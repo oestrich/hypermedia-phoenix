@@ -25,6 +25,7 @@ defmodule Todos.TodoView do
     %{
       href: todo_url(Todos.Endpoint, :show, todo.id),
       data: todo |> collection_data,
+      links: todo |> links,
     }
   end
 
@@ -37,5 +38,11 @@ defmodule Todos.TodoView do
         %{ name: "completed", prompt: "Completed", value: "false" },
       ],
     } |> collection_template(collection)
+  end
+
+  defp links(todo) do
+    [
+      %{ href: todo_comment_url(Todos.Endpoint, :index, todo.id), rel: "http://localhost/comments" },
+    ]
   end
 end

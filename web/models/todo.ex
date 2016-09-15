@@ -5,6 +5,8 @@ defmodule Todos.Todo do
     field :title, :string
     field :completed, :boolean, default: false
 
+    has_many :comments, Todos.Comment
+
     timestamps()
   end
 

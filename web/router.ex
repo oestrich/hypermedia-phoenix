@@ -15,7 +15,13 @@ defmodule Todos.Router do
 
   scope "/", Todos do
     pipe_through :api
-    resources "/", TodoController, except: [:new, :edit]
+    resources "/comments", CommentController, only: [:show, :update, :delete]
+
+    resources "/todos", TodoController, only: [:show, :update, :delete] do
+      resources "/comments", CommentController, only: [:index, :create]
+    end
+
+    resources "/", TodoController, only: [:index, :create]
   end
 
   scope "/", Todos do
